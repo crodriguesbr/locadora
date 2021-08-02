@@ -40,6 +40,8 @@ namespace Locadora.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                
             }
 
             app.UseRouting();
