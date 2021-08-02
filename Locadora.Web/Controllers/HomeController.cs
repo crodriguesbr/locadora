@@ -33,7 +33,7 @@ namespace Locadora.Web.Controllers
             var response = await httpClient.PostAsJsonAsync("http://localhost:5000/Cliente",
                 new ClienteDto()
                 {
-                    Cpf = "12345678909",
+                    Cpf = "12345678901",
                     Nome = "Cristiano Rodrigues",
                     DataNascimento = DateTime.Today
                 });
