@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Thinktecture.IdentityModel.Authorization.WebApi;
 
 namespace Locadora.WebApi.Controllers
 {
     [ApiController]
+    [ApiAuthorize]
     [Route("[controller]")]
     public class ClienteController : ControllerBase
     {
