@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 namespace Locadora.WebApi.Controllers
 {
     [ApiController]
+    
     [Route("[controller]")]
+    
     public class ClienteController : ControllerBase
     {
         private readonly ILogger<ClienteController> _logger;
