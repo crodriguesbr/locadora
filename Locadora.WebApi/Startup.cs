@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,11 @@ namespace Locadora.WebApi
             services.AddScoped<UnitOfWork>();
             services.AddDbContext<LocadoraContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocadoraContext")));
+            services.AddSingleton<IConnection>(o => 
+            {
+                var fabrica = new ConnectionFactory() { HostName = "192.168.70.111", UserName = "guest", Password = "guest" };
+                return fabrica.CreateConnection();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
