@@ -2,6 +2,7 @@
 using Locadora.Dominio;
 using Locadora.WebApi.Dtos;
 using Locadora.WebApi.Handlers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -14,8 +15,7 @@ namespace Locadora.WebApi.Controllers
 {
     [ApiController]
     
-    [Route("[controller]")]
-    
+    [Route("[controller]")]   
     public class ClienteController : ControllerBase
     {
         private readonly ILogger<ClienteController> _logger;
@@ -34,6 +34,7 @@ namespace Locadora.WebApi.Controllers
             _rabbitConnection = rabbitConnection;
         }
         [HttpPost]
+        [Authorize(Roles="Gerente,Administrador")]
         public IActionResult CriarCliente(ClienteDto clienteDto)
         {
             try
@@ -47,6 +48,13 @@ namespace Locadora.WebApi.Controllers
                 _logger.LogError(ex.Message, ex);
                 return StatusCode(500, "Erro ao criar cliente");
             }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Versao()
+        {
+            return Ok("1.0.0.0");
         }
     }
 }
