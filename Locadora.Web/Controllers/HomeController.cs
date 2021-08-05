@@ -29,6 +29,7 @@ namespace Locadora.Web.Controllers
         {
             var httpClient = _httpClientFactory.CreateClient();
 
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkNyaXN0aWFubyIsImVtYWlsIjoiY3Jpc3RpYW5vbnJAZ21haWwuY29tIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJuYmYiOjE2MjgxMTc2MjMsImV4cCI6MTYyODEyMTIyMywiaWF0IjoxNjI4MTE3NjIzfQ.Z4JZgG9jtwfKaNFvl1rOxDtWozwCe10oB6hZhjXgknk");
 
             var response = await httpClient.PostAsJsonAsync("http://localhost:5000/Cliente",
                 new ClienteDto()

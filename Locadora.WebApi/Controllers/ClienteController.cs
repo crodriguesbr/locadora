@@ -40,6 +40,7 @@ namespace Locadora.WebApi.Controllers
             try
             {
                 var cadastrarCliente = new CadastrarClienteHandler(_locadoraContext, _repositorioCliente, _rabbitConnection);
+                var nome = User.Identity.Name;
                 cadastrarCliente.Criar(clienteDto);
                 return CreatedAtAction(nameof(CriarCliente), Guid.NewGuid());
             }
